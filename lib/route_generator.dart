@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:attendance_test/presentations/pages/homepage/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +10,17 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return CupertinoPageRoute(
-            builder: (_) => MyHomePage(title: 'demo page'));
+        return Platform.isAndroid
+            ? MaterialPageRoute(
+                builder: (_) => const MyHomePage(title: 'demo page'))
+            : CupertinoPageRoute(
+                builder: (_) => const MyHomePage(title: 'demo page'));
       default:
-        return CupertinoPageRoute(
-            builder: (_) => MyHomePage(title: 'demo page'));
+        return Platform.isAndroid
+            ? MaterialPageRoute(
+                builder: (_) => const MyHomePage(title: 'demo page'))
+            : CupertinoPageRoute(
+                builder: (_) => const MyHomePage(title: 'demo page'));
     }
   }
 }
