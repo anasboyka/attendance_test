@@ -11,19 +11,44 @@ class Attendance extends Equatable {
     required this.checkIn,
   });
 
-  factory Attendance.fromMap(Map<String, dynamic> map) {
+  factory Attendance.fromJson(Map<String, dynamic> jsonData) {
     return Attendance(
-      user: map['user'],
-      phone: map['phone'],
-      checkIn: map['check-in']?.toDate(),
+      user: jsonData['user'],
+      phone: jsonData['phone'],
+      checkIn: jsonData['check-in'] is DateTime
+          ? jsonData['check-in']
+          : DateTime.parse(
+              jsonData['check-in'],
+            ),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'user': user,
+        'phone': phone,
+        'check-in': checkIn.toIso8601String(),
+      };
 
   Map<String, dynamic> toMap() => {
         'user': user,
         'phone': phone,
-        'check-in': checkIn,
+        'check-in': checkIn.toIso8601String(),
       };
+
+  factory Attendance.fromMap(Map<String, dynamic> map) {
+    return Attendance(
+      user: map['user'],
+      phone: map['phone'],
+      checkIn: map['check-in'] is String
+          ? DateTime.parse(map['check-in'])
+          : map['check-in'],
+      // is DateTime
+      //     ? map['check-in']
+      //     : DateTime.parse(
+      //         map['check-in'],
+      //       ),
+    );
+  }
 
   Attendance copyWith({
     final String? user,
