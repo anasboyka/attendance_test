@@ -15,9 +15,9 @@ class _WrapperStartupState extends State<WrapperStartup> {
   @override
   Widget build(BuildContext context) {
     if (startup != null && startup == false) {
-      return Home();
+      return const Home();
     } else {
-      return OnboardingScreen();
+      return const OnboardingScreen();
     }
   }
 }

@@ -136,13 +136,6 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // Provider.of<AttendanceProvider>(context, listen: false).addAttendance(
-          //   Attendance(
-          //     user: 'user1',
-          //     phone: 'phone',
-          //     checkIn: DateTime(2021, 06, 30, 16, 10, 05),
-          //   ),
-          // );
           return showDialog(
               context: context,
               builder: (context) {

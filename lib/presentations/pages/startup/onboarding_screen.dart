@@ -37,7 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               _currentIndex = index;
             });
           },
-          children: [
+          children: const [
             OnboardingStep1(),
             OnboardingStep2(),
             OnboardingStep3(),
@@ -45,10 +45,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
       bottomSheet: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         height: 80,
         child: Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               flex: 2,
@@ -96,6 +95,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     : TextButton(
                         onPressed: () async {
                           await Spreferences.setStartup(false);
+                          if (!mounted) return;
                           Navigator.of(context).pushReplacementNamed('/');
                         },
                         child: const Text('CONTINUE'),

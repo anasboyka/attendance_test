@@ -75,15 +75,6 @@ class _UserDetailState extends State<UserDetail> {
             fs: 16,
           ),
         ),
-        // title == 'Phone'
-        //     ? IconButton(
-        //         onPressed: () {},
-        //         icon: Icon(
-        //           Icons.share,
-        //           color: kcPrimary,
-        //         ),
-        //       )
-        //     : empty()
       ],
     );
   }
