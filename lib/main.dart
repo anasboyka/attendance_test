@@ -1,5 +1,7 @@
 import 'package:attendance_test/business_logic/bloc/attendance_bloc.dart';
+import 'package:attendance_test/business_logic/provider/attendance_provider.dart';
 import 'package:attendance_test/constants/constant_color.dart';
+import 'package:attendance_test/data/data_repo/attendance_repository.dart';
 import 'package:attendance_test/data/local/shared_prefences.dart';
 import 'package:attendance_test/route_generator.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Spreferences.init();
-
   runApp(MultiProvider(providers: [
-    BlocProvider<AttendanceBloc>(
-      create: (context) => AttendanceBloc()..add(LoadAttendance()),
-    ),
+    // BlocProvider<AttendanceBloc>(
+    //   create: (context) =>
+    //       AttendanceBloc(AttendanceRepo())..add(LoadAttendance()),
+    // ),
+    ChangeNotifierProvider(
+        create: (_) => AttendanceProvider()..initializeData()),
   ], child: const MyApp()));
 }
 

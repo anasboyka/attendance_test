@@ -1,3 +1,5 @@
+import 'package:attendance_test/presentations/pages/homepage/home.dart';
+import 'package:attendance_test/presentations/pages/startup/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 class WrapperStartup extends StatefulWidget {
@@ -11,10 +13,10 @@ class _WrapperStartupState extends State<WrapperStartup> {
   bool startup = false;
   @override
   Widget build(BuildContext context) {
-    if (startup) {
-      return Scaffold();
+    if (!startup) {
+      return Home();
     } else {
-      return Scaffold();
+      return OnboardingScreen();
     }
   }
 }

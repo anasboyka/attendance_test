@@ -15,6 +15,14 @@ class LoadAttendance extends AttendanceEvent {
   List<Object> get props => [attendanceList];
 }
 
+class SearchAttendance extends AttendanceEvent {
+  final String query;
+  const SearchAttendance({required this.query});
+
+  @override
+  List<Object> get props => [query];
+}
+
 class AddAttendance extends AttendanceEvent {
   final Attendance attendance;
   const AddAttendance({required this.attendance});

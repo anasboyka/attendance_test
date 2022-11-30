@@ -21,3 +21,11 @@ class AttendanceLoaded extends AttendanceState {
   @override
   List<Object> get props => [attendanceList];
 }
+
+class AttendanceSearched extends AttendanceState {
+  final List<Attendance> attendanceList;
+  const AttendanceSearched({this.attendanceList = const []});
+
+  @override
+  List<Object> get props => [attendanceList];
+}

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const kcWhite = Color(0xffffffff);
 const kcBlack = Color(0xff000000);
 const kcPrimary = Color(0xff685BA1);
+const kcYellow1 = Color(0xffFBC153);
+const kcYellow2 = Color(0xffFCEBCD);
 
 MaterialColor kcPrimarySwatch = createMaterialColor(kcPrimary);
 MaterialColor createMaterialColor(Color color) {
