@@ -4,6 +4,7 @@ import 'package:attendance_test/constants/constant_string.dart';
 import 'package:attendance_test/constants/constant_widget.dart';
 import 'package:attendance_test/data/models/attendance.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -37,14 +38,21 @@ class _HomeState extends State<Home> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              // floating: true,
-              // pinned: true,
-              // snap: true,
+              floating: false,
               title: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   const Text('Attendance'),
                   const Spacer(),
+                  Text(
+                    'Show Date',
+                    style: kwtextStyleRD(
+                      fs: 12,
+                      c: kcWhite,
+                      fw: kfbold,
+                    ),
+                  ),
+                  gapwr(w: 14),
                   Consumer<AttendanceProvider>(
                       builder: (_, attendanceProvider, child) {
                     bool? isDate = attendanceProvider.isDate;
@@ -68,9 +76,13 @@ class _HomeState extends State<Home> {
                         .searchAttendance(query);
                   },
                   decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                     filled: true,
                     fillColor: kcWhite,
-                    border: OutlineInputBorder(),
+                    hintText: 'Search Attendance',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
                   ),
                 ),
               ),
@@ -80,16 +92,7 @@ class _HomeState extends State<Home> {
               List<Attendance>? attendanceList = attendanceProvider.attendances;
               bool isDate = attendanceProvider.isDate;
 
-              if (attendanceList.isEmpty) {
-                return SliverList(
-                    delegate: SliverChildListDelegate([
-                  const SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: CircularProgressIndicator.adaptive(),
-                  )
-                ]));
-              } else {
+              if (attendanceList.isNotEmpty) {
                 return SliverList(
                   delegate: SliverChildListDelegate(
                     [
@@ -119,6 +122,13 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 );
+              } else {
+                return SliverList(
+                    delegate: SliverChildListDelegate([
+                  const ListTile(
+                    title: Text('Result not found'),
+                  )
+                ]));
               }
             })
           ],
@@ -137,7 +147,7 @@ class _HomeState extends State<Home> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text('title'),
+                  title: const Text('Add attendance'),
                   content: SingleChildScrollView(
                     child: Form(
                       key: _formkey,

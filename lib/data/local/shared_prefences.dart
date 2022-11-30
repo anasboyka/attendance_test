@@ -4,7 +4,7 @@ class Spreferences {
   static SharedPreferences? _preferences;
 
   static const _attendanceList = 'attendanceList';
-  // static const _dateFormat = 'dateFormat';
+  static const _startup = 'startup';
   static const _dateTimeAgo = 'dateTimeAgo';
 
   static Future init() async =>
@@ -15,10 +15,10 @@ class Spreferences {
 
   static bool? getIsDateTimeAgo() => _preferences!.getBool(_dateTimeAgo);
 
-  // static Future setDateFormat(String format) async =>
-  //     await _preferences!.setString(_dateFormat, format);
+  static Future setStartup(bool startup) async =>
+      await _preferences!.setBool(_startup, startup);
 
-  // static String? getDateFormat() => _preferences!.getString(_dateFormat);
+  static bool? getStartup() => _preferences!.getBool(_startup);
 
   static Future setAttendanceList(String attendaceList) async =>
       await _preferences!.setString(_attendanceList, attendaceList);

@@ -53,6 +53,10 @@ SizedBox gaph({double h = 20}) {
   return SizedBox(height: h);
 }
 
+SizedBox empty() {
+  return const SizedBox();
+}
+
 Future kwShowSnackbar(BuildContext context, String message,
     {int seconds = 2}) async {
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
